@@ -1,6 +1,8 @@
 
 public class HeadHandler extends BaseHandler{
 	protected PatternMatch nextHandle;
+	
+	@Override
 	public void setNextChain(PatternMatch nextHandle) {
 		this.nextHandle = nextHandle;
 	}
