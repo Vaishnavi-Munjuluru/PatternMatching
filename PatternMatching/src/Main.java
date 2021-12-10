@@ -3,18 +3,18 @@ public class Main {
 	public static void main(String args[]) {
 		
 		
-		String str = "bacatatb";
-		String pm = "c*tb";
+		String str = "cacacat";
+		String pm = "c*t";
 		
-		
+		Match match = new Match("ca*");
+		int index = match.findFirstIn("bobcat");
+		System.out.print(index);
+	}
+	
 		/*
-		String str = "atb";
-		String pm = ".tb";
-		*/
-		
 		if(pm.charAt(0) == '*' || pm.charAt(0) == '.') {
 			boolean res = patternMatch(0,str,pm,0);
-			if(res == true) {
+			if(res) {
 				System.out.println(0);
 			}
 			
@@ -24,7 +24,7 @@ public class Main {
 			if(pm.charAt(0) == str.charAt(i)) {
 				//System.out.println(i);
 				boolean res = patternMatch(i,str,pm,0);
-				if(res == true) {
+				if(res) {
 					System.out.println(i);
 					break;
 				}
@@ -87,5 +87,5 @@ public class Main {
 		return false;
 	}
 	
-		
+		*/
 }

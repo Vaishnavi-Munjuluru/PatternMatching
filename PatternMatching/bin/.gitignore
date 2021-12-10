@@ -4,3 +4,7 @@
 /PatternMatch.class
 /WildCharacterAsterisk.class
 /WildCharacterDot.class
+/BaseHandler.class
+/Head.class
+/HeadHandler.class
+/EndHandler.class
