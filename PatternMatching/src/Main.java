@@ -3,12 +3,14 @@ public class Main {
 	public static void main(String args[]) {
 		
 		
-		/*String str = "bacatatb";
+		String str = "bacatatb";
 		String pm = "c*tb";
-		*/
 		
+		
+		/*
 		String str = "atb";
 		String pm = ".tb";
+		*/
 		
 		if(pm.charAt(0) == '*' || pm.charAt(0) == '.') {
 			boolean res = patternMatch(0,str,pm,0);
@@ -20,11 +22,14 @@ public class Main {
 		else {
 		for(int i=0;i<str.length();i++) {
 			if(pm.charAt(0) == str.charAt(i)) {
+				//System.out.println(i);
 				boolean res = patternMatch(i,str,pm,0);
 				if(res == true) {
 					System.out.println(i);
 					break;
 				}
+				else 
+					continue;
 					
 			}
 			}
@@ -49,15 +54,20 @@ public class Main {
 			
 			if(pm.length() == pmp+1)
 				return true;
-			while(position< str.length() && str.charAt(position) != pm.charAt(pmp+1))
+			
+			
+			while(position < str.length()) {
+				if(str.charAt(position) == pm.charAt(pmp+1)) {
+					boolean res = patternMatch(position,str,pm,pmp+1);	
+					if(res == true)
+						return true;
+				}
+					
 				position++;
+			}
 			if(position == str.length())
 				return false;
 			//System.out.println("posss    "+ position);
-			boolean res = patternMatch(position,str,pm,pmp+1);
-			
-			if(res == true)
-				return true;
 			
 		}
 		
