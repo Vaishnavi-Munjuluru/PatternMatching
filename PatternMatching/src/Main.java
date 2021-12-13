@@ -6,7 +6,7 @@ public class Main {
 		String str = "cacacat";
 		String pm = "c*t";
 		
-		Match match = new Match("ca*");
+		Match match = new Match("ca*t");
 		int index = match.findFirstIn("bobcat");
 		System.out.print(index);
 	}

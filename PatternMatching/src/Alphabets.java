@@ -13,6 +13,7 @@ public class Alphabets extends BaseHandler{
 	@Override
 	public void setNextChain(PatternMatch nextHandler) {
 		this.nextHandler = nextHandler;
+		System.out.println("Alphabets");
 	}
 	
 	@Override

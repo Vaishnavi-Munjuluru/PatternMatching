@@ -4,6 +4,7 @@ public class WildCharacterAsterisk extends BaseHandler{
 	char currentCharacter;
 	public WildCharacterAsterisk(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
+		System.out.println("WildCharacterAsterisk");
 	}
 	
 	public char getCharacter() {

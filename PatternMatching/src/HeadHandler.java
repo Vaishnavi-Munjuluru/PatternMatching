@@ -5,6 +5,7 @@ public class HeadHandler extends BaseHandler{
 	
 	public HeadHandler(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
+		System.out.println("head");
 	}
 	
 	@Override

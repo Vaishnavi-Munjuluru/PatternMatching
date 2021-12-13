@@ -3,6 +3,7 @@ public class WildCharacterDot extends BaseHandler{
 	char currentCharacter;
 	public WildCharacterDot(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
+		System.out.println("WildCharacterDot");
 	}
 	protected PatternMatch nextHandler;
 	

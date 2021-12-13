@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Match {
-	
+	PatternMatch head;
 	String pattern;
 	int result = -2;
 	
@@ -17,24 +17,46 @@ public class Match {
 
 		List<PatternMatch> objects = new LinkedList<>();
 		
+		PatternMatch tempObj;
+		//System.out.print(ch);
+		
+		//Initialize 1st character (Head)
+		if(ch[0] == '.') {
+			tempObj = new WildCharacterDot(ch[0]);
+		}
+		else if(ch[0] == '*') {
+			tempObj = new WildCharacterAsterisk(ch[0]);
+		}
+		else {
+			tempObj = new Alphabets(ch[0]);
+		}
+		
+		head = tempObj;
+		//System.out.println(ch[0]);
 		for(int i=1; i< ch.length; i++) {
 			if(ch[i] == '.') {
+				//System.out.println(ch[i]);
 				PatternMatch dotObject = new WildCharacterDot(ch[i]);
 				objects.add(dotObject);
-				//head.setNextChain(dotObject);
+				tempObj.setNextChain(dotObject);
+				tempObj = dotObject;
 			}
 			else if(ch[i] == '*') {
+				//System.out.println(ch[i]);
 				PatternMatch asteriskObject = new WildCharacterAsterisk(ch[i]);
 				objects.add(asteriskObject);
-				//dotObject.setNextChain(asteriskObject);
+				tempObj.setNextChain(asteriskObject);
+				tempObj = asteriskObject;
 			}
 			else {
+				//System.out.println(ch[i]);
 				PatternMatch alphabetObject = new Alphabets(ch[i]);
 				objects.add(alphabetObject);
-				//asteriskObject.setNextChain(alphabetObject);
+				tempObj.setNextChain(alphabetObject);
+				tempObj = alphabetObject;
 			}
 		}
-		PatternMatch dotObject = new EndHandler();
+		/*PatternMatch dotObject = new EndHandler();
 		objects.add(dotObject);
 		
 		PatternMatch head = new HeadHandler(ch[0]);
@@ -42,6 +64,7 @@ public class Match {
 		for(int i = 0; i<objects.size()-1; i++) {
 			objects.get(i).setNextChain(objects.get(i+1));
 		}
+		*/
 		
 		result = head.handleRequest(0, inputString);
 		
