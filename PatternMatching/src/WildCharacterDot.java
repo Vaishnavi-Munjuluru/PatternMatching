@@ -7,17 +7,25 @@ public class WildCharacterDot extends BaseHandler{
 	protected PatternMatch nextHandler;
 	
 	@Override
+	public char getCharacter() {
+		// TODO Auto-generated method stub
+		return currentCharacter;
+	}
+	
+	@Override
 	public void setNextChain(PatternMatch nextHandler) {
 		this.nextHandler = nextHandler;
 	}
 	
 	@Override
-	public int handleRequest(int position, String inputString,String pattern, int patternPosition) {
-		if(pattern.charAt(patternPosition) == '.') {
-			int res = nextHandler.handleRequest(position+1,inputString,pattern,patternPosition+1);
+	public int handleRequest(int position, String inputString) {
+		if(currentCharacter == '.') {
+			int res = nextHandler.handleRequest(position+1,inputString);
 			if(res!=-1)
 				return position;
 		}
 		return -1;
 	}
+
+	
 }

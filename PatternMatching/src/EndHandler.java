@@ -8,8 +8,12 @@ public class EndHandler implements PatternMatch{
 		this.nextHandler = nextHandler;
 	}
 	
+	public char getCharacter() {
+		return Character.MIN_VALUE;
+	}
+	
 	@Override
-	public int handleRequest(int position, String str,String pm, int pmp) {
+	public int handleRequest(int position, String str) {
 		return position;
 	}
 }

@@ -17,7 +17,7 @@ public class Match {
 
 		List<PatternMatch> objects = new LinkedList<>();
 		
-		for(int i=0; i< ch.length; i++) {
+		for(int i=1; i< ch.length; i++) {
 			if(ch[i] == '.') {
 				PatternMatch dotObject = new WildCharacterDot(ch[i]);
 				objects.add(dotObject);
@@ -37,13 +37,13 @@ public class Match {
 		PatternMatch dotObject = new EndHandler();
 		objects.add(dotObject);
 		
-		PatternMatch head = new HeadHandler();
+		PatternMatch head = new HeadHandler(ch[0]);
 		head.setNextChain(objects.get(0));
 		for(int i = 0; i<objects.size()-1; i++) {
 			objects.get(i).setNextChain(objects.get(i+1));
 		}
 		
-		result = head.handleRequest(0, inputString, pattern, 0);
+		result = head.handleRequest(0, inputString);
 		
 		return result;
 	}

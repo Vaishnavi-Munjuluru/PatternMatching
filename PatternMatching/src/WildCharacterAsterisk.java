@@ -6,6 +6,10 @@ public class WildCharacterAsterisk extends BaseHandler{
 		this.currentCharacter = currentCharacter;
 	}
 	
+	public char getCharacter() {
+		return this.currentCharacter;
+	}
+	
 	protected PatternMatch nextHandler;
 	
 	@Override
@@ -14,13 +18,13 @@ public class WildCharacterAsterisk extends BaseHandler{
 	}
 	
 	@Override
-	public int handleRequest(int position, String inputString,String pattern, int patternPosition) {
-		if(pattern.charAt(patternPosition) == '*') {
-			if(pattern.length() == patternPosition+1)
-				return position;
+	public int handleRequest(int position, String inputString) {
+		if(currentCharacter == '*') {
+			/*if(pattern.length() == patternPosition+1)
+				return position;*/   //this end case should be written in the endhandler. all the end condtions should be collectively written in endhandler
 			while(position < inputString.length()) {
-				if(inputString.charAt(position) == pattern.charAt(patternPosition+1)) {
-					int res = nextHandler.handleRequest(position,inputString,pattern,patternPosition+1);	
+				if(inputString.charAt(position) == nextHandler.getCharacter()) {
+					int res = nextHandler.handleRequest(position,inputString);	
 					if(res!=-1)
 						return position;
 				}

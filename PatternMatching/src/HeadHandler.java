@@ -1,22 +1,31 @@
 
 public class HeadHandler extends BaseHandler{
 	protected PatternMatch nextHandle;
+	char currentCharacter;
+	
+	public HeadHandler(char currentCharacter) {
+		this.currentCharacter = currentCharacter;
+	}
 	
 	@Override
 	public void setNextChain(PatternMatch nextHandle) {
 		this.nextHandle = nextHandle;
 	}
 	
+	public char getCharacter() {
+		return this.currentCharacter;
+	}
+	
 	@Override
-	public int handleRequest(int position, String inputString, String pattern, int patternPosition) {
+	public int handleRequest(int position, String inputString) {
 		int result = -1;
-		if(pattern.charAt(0) == '*' || pattern.charAt(0) == '.') {
-			result = nextHandle.handleRequest(0, inputString, pattern, 0);		
+		if(currentCharacter == '*' || currentCharacter == '.') {
+			result = nextHandle.handleRequest(0, inputString);		
 		}
 		else {
 			for(int i=0;i<inputString.length();i++) {
-				if(pattern.charAt(0) == inputString.charAt(i)) {
-					result = nextHandle.handleRequest(i, inputString, pattern, 0);
+				if(currentCharacter == inputString.charAt(i)) {
+					result = nextHandle.handleRequest(i, inputString);
 				}
 			}
 		}
