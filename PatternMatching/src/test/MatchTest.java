@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import main.Match;
 
-
 class MatchTest {
 	Match match;
 	

@@ -4,13 +4,14 @@ public class WildCharacterDot implements PatternMatch{
 	PatternMatch nextHandler;
 	char currentCharacter;
 	
-	public WildCharacterDot(char currentCharacter) {
+	@Override
+	public void setCharacter(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
 	}
 	
 	@Override
 	public char getCharacter() {
-		return this.currentCharacter;
+		return currentCharacter;
 	}
 	
 	@Override
@@ -20,16 +21,13 @@ public class WildCharacterDot implements PatternMatch{
 	
 	@Override
 	public int handleRequest(int position, String inputString) {
-		if(nextHandler==null) {
+		if(nextHandler==null) 
 			return position;
-		}
-		else {
-			int res = nextHandler.handleRequest(position+1,inputString);
-			if(res!=-1)
-				return position;
-		}
+		
+		if(nextHandler.handleRequest(position+1,inputString)!=-1)
+			return position;
+		
 		return -1;
 	}
-
 	
 }

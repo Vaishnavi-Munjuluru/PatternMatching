@@ -9,33 +9,35 @@ public class Match {
 	}
 	
 	public int findFirstIn(String inputString) {
+		
+		char[] characterArray = new char[pattern.length()];
 		PatternMatch head;
-		PatternMatch tempObj;
+		PatternMatch previousHandler;
+		PatternMatch currentHandler;
 		
-		char[] ch = new char[pattern.length()];
-		ch = pattern.toCharArray();
-		
-		head = new HeadHandler(ch[0]);
-		tempObj = head;
+		characterArray = pattern.toCharArray();
+		head = new HeadHandler();
+		head.setCharacter(characterArray[0]);
+		previousHandler = head;
 
-		for(int i=0; i< ch.length; i++) {
-			if(ch[i] == '.') {
-				PatternMatch dotObject = new WildCharacterDot(ch[i]);
-				tempObj.setNextChain(dotObject);
-				tempObj = dotObject;
+		for(int i=0; i< characterArray.length; i++) {
+			if(characterArray[i] == '*') {
+				currentHandler = new WildCharacterAsterisk();
+				previousHandler.setNextChain(currentHandler);
+				previousHandler = currentHandler;
 			}
-			else if(ch[i] == '*') {
-				PatternMatch asteriskObject = new WildCharacterAsterisk(ch[i]);
-				tempObj.setNextChain(asteriskObject);
-				tempObj = asteriskObject;
+			else if(characterArray[i] == '.') {
+				currentHandler = new WildCharacterDot();
+				previousHandler.setNextChain(currentHandler);
+				previousHandler = currentHandler;
 			}
 			else {
-				PatternMatch alphabetObject = new Alphabets(ch[i]);
-				tempObj.setNextChain(alphabetObject);
-				tempObj = alphabetObject;
+				currentHandler = new Alphabets();
+				previousHandler.setNextChain(currentHandler);
+				previousHandler = currentHandler;
 			}
+			currentHandler.setCharacter(characterArray[i]);
 		}
-		
 		return head.handleRequest(0, inputString);
 	}
 		

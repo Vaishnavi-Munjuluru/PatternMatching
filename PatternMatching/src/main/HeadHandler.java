@@ -4,7 +4,8 @@ public class HeadHandler implements PatternMatch{
 	PatternMatch nextHandle;
 	char currentCharacter;
 	
-	public HeadHandler(char currentCharacter) {
+	@Override
+	public void setCharacter(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
 	}
 	
@@ -14,24 +15,20 @@ public class HeadHandler implements PatternMatch{
 	}
 	
 	public char getCharacter() {
-		return this.currentCharacter;
+		return currentCharacter;
 	}
 	
 	@Override
 	public int handleRequest(int position, String inputString) {
-		int result = -1;
 		if(currentCharacter == '*' || currentCharacter == '.') {
-			result = nextHandle.handleRequest(0, inputString);		
+			return nextHandle.handleRequest(0, inputString);		
 		}
-		else {
-			for(int i=0;i<inputString.length();i++) {
-				if(currentCharacter == inputString.charAt(i)) {
-					result = nextHandle.handleRequest(i, inputString);
-					if(result != -1)
-						return result;
-				}
+		
+		for(int i=0;i<inputString.length();i++) {
+			if(currentCharacter == inputString.charAt(i)) {
+					return nextHandle.handleRequest(i, inputString);
 			}
 		}
-		return result;
+		return -1;
 	}
 }
