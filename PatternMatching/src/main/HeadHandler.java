@@ -1,17 +1,16 @@
+package main;
 
 public class HeadHandler implements PatternMatch{
-	protected PatternMatch nextHandle;
+	PatternMatch nextHandle;
 	char currentCharacter;
 	
 	public HeadHandler(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
-		//System.out.println("head");
 	}
 	
 	@Override
 	public void setNextChain(PatternMatch nextHandle) {
 		this.nextHandle = nextHandle;
-		System.out.println("head");
 	}
 	
 	public char getCharacter() {
@@ -33,7 +32,6 @@ public class HeadHandler implements PatternMatch{
 				}
 			}
 		}
-		
 		return result;
 	}
 }

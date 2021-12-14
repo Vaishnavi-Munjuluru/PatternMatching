@@ -1,16 +1,16 @@
+package main;
 
 public class WildCharacterDot implements PatternMatch{
+	PatternMatch nextHandler;
 	char currentCharacter;
+	
 	public WildCharacterDot(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
-		System.out.println("WildCharacterDot");
 	}
-	protected PatternMatch nextHandler;
 	
 	@Override
 	public char getCharacter() {
-		// TODO Auto-generated method stub
-		return currentCharacter;
+		return this.currentCharacter;
 	}
 	
 	@Override
@@ -28,7 +28,6 @@ public class WildCharacterDot implements PatternMatch{
 			if(res!=-1)
 				return position;
 		}
-		
 		return -1;
 	}
 

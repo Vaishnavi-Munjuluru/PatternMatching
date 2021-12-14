@@ -1,11 +1,12 @@
+package main;
 
 public class Alphabets implements PatternMatch{
+	PatternMatch nextHandler;
 	char currentCharacter;
 	
 	public Alphabets(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
 	}
-	protected PatternMatch nextHandler;
 	
 	public char getCharacter() {
 		return this.currentCharacter;
@@ -14,12 +15,10 @@ public class Alphabets implements PatternMatch{
 	@Override
 	public void setNextChain(PatternMatch nextHandler) {
 		this.nextHandler = nextHandler;
-		System.out.println("Alphabets");
 	}
 	
 	@Override
 	public int handleRequest(int position, String inputString) {
-		System.out.println("position "+position+"current char "+currentCharacter);
 		if(currentCharacter == inputString.charAt(position) && nextHandler == null) {
 			return position;
 		}
@@ -33,9 +32,6 @@ public class Alphabets implements PatternMatch{
 					return position;
 			}
 		}
-		/*if(patternPosition+1 == pattern.length()) {
-			return position;  //not really sure of this condition
-		}*/	
 		return -1;
 	}
 
