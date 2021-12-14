@@ -1,4 +1,5 @@
 package test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -6,12 +7,37 @@ import org.junit.jupiter.api.Test;
 import main.Match;
 
 class MatchTest {
+	
 	Match match;
+	
+	@Test
+	void testDotAsterisk() {
+		match = new Match("c.*t");
+		assertEquals(2, match.findFirstIn("bacacacat"));
+	}
+	
+	@Test
+	void testAsteriskDotDot() {
+		match = new Match("c*..");
+		assertEquals(0, match.findFirstIn("cabt"));
+	}
+	
+	@Test
+	void testDotDotAsterisk() {
+		match = new Match("c..*");
+		assertEquals(1, match.findFirstIn("fcabt"));
+	}
 	
 	@Test
 	void testAsterisk() {
 		match = new Match("c*tb");
 		assertEquals(2, match.findFirstIn("bacatatb"));
+	}
+	
+	@Test
+	void testAsteriskDot() {
+		match = new Match("c*.");
+		assertEquals(0, match.findFirstIn("cat"));
 	}
 	
 	@Test
@@ -69,9 +95,14 @@ class MatchTest {
 	}
 	
 	@Test
-	void testAsteriskDot() {
-		match = new Match("c.*t");
-		assertEquals(0, match.findFirstIn("cacacat"));
+	void testAlphabets() {
+		match = new Match("cat");
+		assertEquals(4, match.findFirstIn("cacacat"));
 	}
 	
+	@Test
+	void testAlphabetsFail() {
+		match = new Match("bat");
+		assertEquals(-1, match.findFirstIn("cacacat"));
+	}
 }

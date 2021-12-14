@@ -1,24 +1,25 @@
-package main;
+package patternhandlers;
 
-public class Alphabets implements PatternMatch{
+public class AlphabetsHandler implements PatternMatch{
 	PatternMatch nextHandler;
 	char currentCharacter;
 	
-	@Override
-	public void setCharacter(char currentCharacter) {
+	public AlphabetsHandler(char currentCharacter) {
 		this.currentCharacter = currentCharacter;
 	}
-	
-	@Override
-	public char getCharacter() {
-		return this.currentCharacter;
-	}
-	
+
 	@Override
 	public void setNextChain(PatternMatch nextHandler) {
 		this.nextHandler = nextHandler;
 	}
 	
+	/**
+	 * This handle method matches the alphabet character till the end of the inputString. 
+	 * @param int position (location)
+	 * @param String inputString (target String)
+	 * @return  If the match is found, it returns the position (success)
+	 * Else it returns -1 (failure)
+	 */
 	@Override
 	public int handleRequest(int position, String inputString) {
 		if(currentCharacter == inputString.charAt(position) && nextHandler == null) 
