@@ -18,7 +18,7 @@ class MatchTest {
 	
 	@Test
 	void testAsteriskDotDot() {
-		match = new Match("c*..");
+		match = new Match("c*...");
 		assertEquals(0, match.findFirstIn("cabt"));
 	}
 	
